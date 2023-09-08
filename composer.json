@@ -13,6 +13,6 @@
             "email": "2543852925@qq.com"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "require": {}
 }
