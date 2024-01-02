@@ -20,4 +20,14 @@ class StringUtil
     {
         echo  'ximu' . $str;
     }
+
+    /**
+     * 判断字符串是否有中文
+     * @param $str string 字符串
+     * @return bool true:有中文 false:没有中文
+     */
+    public static function hasChinese(string $str) :bool
+    {
+        return (bool)preg_match("/[\x7f-\xff]/", $str);
+    }
 }
