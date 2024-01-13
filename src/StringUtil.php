@@ -20,6 +20,10 @@ class StringUtil
     {
         echo  'ximu' . $str;
     }
+    public static function version()
+    {
+        return '1.0.0';
+    }
 
     /**
      * 判断字符串是否有中文
