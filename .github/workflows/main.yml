@@ -1,0 +1,31 @@
+name: PHP Static Analysis
+ 
+on: [push, pull_request]
+ 
+jobs:
+  php-static-analysis:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+ 
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.0'
+        tools: phpcs,phpcpd,phpmd,composer
+ 
+    - name: Run PHPCS
+      run: phpcs --standard=PSR2 --extensions=php --ignore=vendor/ .
+ 
+    - name: Run PHPCPD
+      run: phpcpd --log-pmd .
+ 
+    - name: Run PHPMD
+      run: phpmd . text phpmd.xml
+ 
+    - name: Run Composer Install
+      run: composer install --no-interaction --optimize-autoloader --no-scripts --prefer-dist
+ 
+    - name: Run Tests
+      run: vendor/bin/phpunit
